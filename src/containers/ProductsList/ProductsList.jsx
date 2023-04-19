@@ -12,6 +12,7 @@ const ProductsList = ({ products }) => {
                     price={product.price}
                     imgLink={product.image}
                     id={product.id}
+                    favourite={product.favourite}
                 />
             ))}
         </div>

@@ -8,8 +8,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { useState } from "react";
 import { updateProduct } from "../../services/products";
 
-const Product = ({ name, price, imgLink, id }) => {
-    const [fav, setFav] = useState(false);
+const Product = ({ name, price, imgLink, id, favourite }) => {
+    const [fav, setFav] = useState(favourite);
     library.add(faHeart);
     library.add(unfilled);
     const favClick = async () => {
