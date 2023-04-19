@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    color: black;
+    font-size: larger;
+    padding: 10px 10px 10px 0;
+}
+
+.item:hover {
+    color: purple;
+}
