@@ -2,22 +2,25 @@
     position: relative;
     border: 1px solid white;
     height: 300px;
-    width: 250px;
+    width: 300px;
     margin: 10px;
 
     &__text {
         display: flex;
         justify-content: space-between;
+        padding: 5px;
+        font-size: large;
     }
 
     &__img {
-        width: 250px;
+        width: 300px;
         height: 250px;
     }
 
     &__fav {
         position: absolute;
         bottom: 55px;
-        right: 15px;
+        right: 10px;
+        color: white;
     }
 }

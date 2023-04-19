@@ -16,7 +16,6 @@ const ProductCard = () => {
         };
         getProductById();
     }, [id]);
-    console.log(data);
 
     return (
         data && (

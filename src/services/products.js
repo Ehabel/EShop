@@ -142,11 +142,15 @@ export const addProducts = async () => {
 export const getProduct = async (id) => {
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
-    console.log(docRef);
 
     if (docSnap.exists()) {
         return { id, ...docSnap.data() };
     } else {
         throw new Error("Doc not found");
     }
+};
+
+export const updateProduct = async (id, param) => {
+    const productRef = doc(db, "products", id);
+    await updateDoc(productRef, param);
 };

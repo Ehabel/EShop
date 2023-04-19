@@ -13,7 +13,7 @@ function App() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        console.log("use effect called");
+        console.log("Fetching products");
         const getProducts = async () => {
             setProducts(await getAllProducts());
         };
