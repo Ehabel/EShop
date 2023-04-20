@@ -1,7 +1,28 @@
-.carouselContainer {
+.img {
+    background-color: white;
+    width: 100vw;
+    height: 100%;
 }
 
-.img {
-    width: 100vw;
-    height: 45vh;
+.go {
+    &__container {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__text {
+        font-size: x-large;
+    }
+    &__left {
+        position: absolute;
+        top: 22%;
+        left: 2%;
+        z-index: 2;
+    }
+    &__right {
+        position: absolute;
+        right: 2%;
+        top: 22%;
+        z-index: 2;
+    }
 }

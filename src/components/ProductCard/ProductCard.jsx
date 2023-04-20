@@ -8,14 +8,15 @@ const ProductCard = () => {
     const [data, setData] = useState(null);
     const { id } = useParams();
 
-    useEffect(() => {
-        console.log("calling use effect in product");
-        const getProductById = async () => {
-            const productData = await getProduct(id);
-            setData(productData);
-        };
-        getProductById();
-    }, [id]);
+    // useEffect(() => {
+    //     console.log("calling use effect in product");
+    //     const getProductById = async () => {
+    //         console.log("getting product");
+    //         const productData = await getProduct(id);
+    //         setData(productData);
+    //     };
+    //     getProductById();
+    // }, [id]);
 
     return (
         data && (

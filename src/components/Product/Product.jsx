@@ -13,6 +13,7 @@ const Product = ({ name, price, imgLink, id, favourite }) => {
     library.add(faHeart);
     library.add(unfilled);
     const favClick = async () => {
+        console.log("Setting fav");
         setFav(!fav);
         await updateProduct(id, {
             favourite: !fav,

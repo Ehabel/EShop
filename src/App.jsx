@@ -1,24 +1,23 @@
 import "./App.css";
 import ProductsList from "./containers/ProductsList/ProductsList";
-import Product from "./components/Product/Product";
 import { BrowserRouter } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
 import { useState, useEffect } from "react";
-import { addProducts, getAllProducts } from "./services/products";
 import ProductCard from "./components/ProductCard/ProductCard";
 import CarouselPage from "./containers/CarouselPage/CarouselPage";
+import { getAllProducts } from "./services/products";
 
 function App() {
     const [products, setProducts] = useState([]);
+    const getProducts = async () => {
+        console.log("Fetching products");
+        setProducts(await getAllProducts());
+    };
 
     useEffect(() => {
-        console.log("Fetching products");
-        const getProducts = async () => {
-            setProducts(await getAllProducts());
-        };
-        getProducts();
+        // getProducts();
     }, []);
     return (
         <div className="App">
