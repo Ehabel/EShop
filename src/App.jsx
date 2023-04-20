@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import { useState, useEffect } from "react";
 import { addProducts, getAllProducts } from "./services/products";
 import ProductCard from "./components/ProductCard/ProductCard";
+import CarouselPage from "./containers/CarouselPage/CarouselPage";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -30,7 +31,12 @@ function App() {
                     <Routes>
                         <Route
                             path="/"
-                            element={<Home products={products} />}
+                            element={
+                                <>
+                                    <CarouselPage />
+                                    <Home products={products} />
+                                </>
+                            }
                         />
                         <Route
                             path="/products"
