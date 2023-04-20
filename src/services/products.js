@@ -123,6 +123,7 @@ const shoes = [
 ];
 
 export const getAllProducts = async () => {
+    console.log("Getting all products from products.js");
     const querySnapshot = await getDocs(collection(db, "products"));
     const data = querySnapshot.docs.map((doc) => {
         const id = doc.id;
@@ -133,13 +134,14 @@ export const getAllProducts = async () => {
     return data;
 };
 
-export const addProducts = async () => {
-    shoes.map((shoe) => {
-        addDoc(collection(db, "products"), shoe);
-    });
-};
+// export const addProducts = async () => {
+//     shoes.map((shoe) => {
+//         addDoc(collection(db, "products"), shoe);
+//     });
+// };
 
 export const getProduct = async (id) => {
+    console.log("Getting single item from products.js");
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
 
@@ -151,6 +153,7 @@ export const getProduct = async (id) => {
 };
 
 export const updateProduct = async (id, param) => {
+    console.log("Updating product products.js");
     const productRef = doc(db, "products", id);
     await updateDoc(productRef, param);
 };

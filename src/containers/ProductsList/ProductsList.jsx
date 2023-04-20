@@ -4,19 +4,21 @@ import styles from "./ProductsList.module.scss";
 
 const ProductsList = ({ products }) => {
     return (
-        <div className={styles.products}>
+        <>
             <h2 className={styles.header}>Products</h2>
-            {products.map((product) => (
-                <Product
-                    key={product.id}
-                    name={product.title}
-                    price={product.price}
-                    imgLink={product.image}
-                    id={product.id}
-                    favourite={product.favourite}
-                />
-            ))}
-        </div>
+            <div className={styles.products}>
+                {products.map((product) => (
+                    <Product
+                        key={product.id}
+                        name={product.title}
+                        price={product.price}
+                        imgLink={product.image}
+                        id={product.id}
+                        favourite={product.favourite}
+                    />
+                ))}
+            </div>
+        </>
     );
 };
 

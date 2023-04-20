@@ -2,8 +2,9 @@
     position: relative;
     border: 1px solid white;
     height: 300px;
-    width: 250px;
+    width: fit-content;
     margin: 10px;
+    color: black;
 
     &__text {
         display: flex;
