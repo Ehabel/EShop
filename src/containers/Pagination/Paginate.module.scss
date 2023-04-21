@@ -1,0 +1,15 @@
+.paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &__page {
+        color: transparent;
+        &__num {
+            font-size: large;
+            color: black;
+            margin: 20px;
+        }
+    }
+}

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import ProductCard from "./components/ProductCard/ProductCard";
 import CarouselPage from "./containers/CarouselPage/CarouselPage";
 import { getAllProducts } from "./services/products";
+import PaginatedItems from "./containers/Pagination/Paginate";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -33,13 +34,17 @@ function App() {
                             element={
                                 <>
                                     <CarouselPage />
-                                    <Home products={products} />
+                                    {/* <Home products={products} /> */}
+                                    <PaginatedItems
+                                        itemsPerPage={7}
+                                        products={products}
+                                    />
                                 </>
                             }
                         />
                         <Route
                             path="/products"
-                            element={<ProductsList products={products} />}
+                            element={<Home products={products} />}
                         />
                         <Route path="/products/:id" element={<ProductCard />} />
                     </Routes>

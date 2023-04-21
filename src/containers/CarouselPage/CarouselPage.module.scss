@@ -1,28 +1,35 @@
+.carousel__container {
+    position: relative;
+}
+
 .img {
     background-color: white;
-    width: 100vw;
+    width: 100%;
     height: 100%;
 }
 
 .go {
-    &__container {
-        width: 100%;
-        height: 100%;
-    }
-
     &__text {
         font-size: x-large;
     }
     &__left {
         position: absolute;
-        top: 22%;
+        top: 50%;
         left: 2%;
         z-index: 2;
     }
     &__right {
         position: absolute;
         right: 2%;
-        top: 22%;
+        top: 50%;
         z-index: 2;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .go {
+        &__text {
+            font-size: medium;
+        }
     }
 }

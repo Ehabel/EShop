@@ -11,12 +11,13 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 
 const CarouselPage = () => {
     return (
-        <div className={styles.carouselContainer}>
+        <div>
             <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={45}
+                naturalSlideHeight={20}
                 totalSlides={3}
                 infinite={true}
+                className={styles.carousel__container}
             >
                 <div className={styles.go__container}>
                     <div className={styles.go__left}>
@@ -26,7 +27,6 @@ const CarouselPage = () => {
                         <ButtonNext className={styles.go__text}>🢂</ButtonNext>
                     </div>
                 </div>
-
                 <Slider>
                     <Slide index={0}>
                         <img
