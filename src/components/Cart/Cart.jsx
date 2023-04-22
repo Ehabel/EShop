@@ -3,9 +3,11 @@ import { getProductFromCart } from "../../services/products";
 import CartCard from "../CartCard/CartCard";
 import { CartContextVal } from "../../context/CartContext/CartContext";
 import { useContext } from "react";
+import styles from "./Cart.module.scss";
 
 const Cart = ({ products, removed, setRemoved }) => {
     const [inCart, setInCart] = useState([]);
+    const [priceCart, setPriceCart] = useState(0);
     const { inputVal, setInputVal } = useContext(CartContextVal);
 
     const getItemsInCart = async () => {
@@ -20,9 +22,24 @@ const Cart = ({ products, removed, setRemoved }) => {
         setInCart(await getItemsInCart());
     };
 
+    const setTotalPrice = () => {
+        const prices = inCart.map((cartItem) => {
+            return cartItem.quantity * cartItem.price;
+        });
+
+        const finalPrice = prices.reduce((acc, val) => {
+            return acc + val;
+        }, 0);
+        return finalPrice;
+    };
+
     useEffect(() => {
         getAllCartProducts();
     }, [inputVal]);
+
+    useEffect(() => {
+        setPriceCart(setTotalPrice());
+    }, [inCart]);
 
     return (
         <>
@@ -37,10 +54,13 @@ const Cart = ({ products, removed, setRemoved }) => {
                         id={product.id}
                         idCart={product.idCart}
                         favourite={product.favourite}
+                        variant={product.variant}
+                        quantity={product.quantity}
                         removed={removed}
                         setRemoved={setRemoved}
                     />
                 ))}
+                <div className={styles.text}>Total Price: ${priceCart}</div>
             </div>
         </>
     );

@@ -9,6 +9,8 @@ const CartCard = ({
     price,
     imgLink,
     id,
+    variant,
+    quantity,
     idCart,
     removed,
     setRemoved,
@@ -25,16 +27,31 @@ const CartCard = ({
             <div>
                 <img className={styles.product__img} src={imgLink} alt={name} />
             </div>
-            <div className={styles.product__text}>
+            <div>
                 <p>{name}</p>
                 <p>${price}</p>
+                <div className={styles.product__text__bought}>
+                    <p className={styles.product__text__bought__text}>
+                        Size:{" "}
+                        <span className={styles.product__text__bought__span}>
+                            {variant}
+                        </span>
+                    </p>
+                    <p className={styles.product__text__bought__text}>
+                        Quantity:{" "}
+                        <span className={styles.product__text__bought__span}>
+                            {quantity}
+                        </span>
+                    </p>
+                </div>
+
                 <div className={styles.product__text__cart}>
                     <button>-</button>
                     <p>1</p>
                     <button>+</button>
                     <button onClick={removeItem}>RM</button>
                 </div>
-                <p>Total: </p>
+                <p>Total: ${quantity * price}</p>
             </div>
         </div>
     );

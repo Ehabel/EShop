@@ -156,10 +156,12 @@ export const getAllCartProducts = async () => {
     return data;
 };
 
-export const addToCart = async (productObj) => {
+export const addToCart = async (productObj, variant, quantity) => {
     await addDoc(collection(db, "cart"), {
         item: doc(db, `/products/${productObj}`),
         itemId: `${productObj}`,
+        variant: `${variant}`,
+        quantity: `${quantity}`,
     });
 };
 
@@ -185,9 +187,14 @@ export const getProductFromCart = async (id, cartId) => {
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
     const docRefCart = doc(db, "cart", cartId);
-    const docSnapCart = await getDoc(docRef);
+    const docSnapCart = await getDoc(docRefCart);
     if (docSnap.exists() && docSnapCart.exists()) {
-        return { id, idCart: docRefCart.id, ...docSnap.data() };
+        return {
+            id,
+            idCart: docRefCart.id,
+            ...docSnap.data(),
+            ...docSnapCart.data(),
+        };
     } else {
         throw new Error("Doc not found");
     }

@@ -10,6 +10,7 @@ import { CartContextVal } from "../../context/CartContext/CartContext";
 
 const ProductCard = () => {
     const [data, setData] = useState(null);
+    const [variant, setVariant] = useState(null);
     const { id } = useParams();
     const { inputVal, setInputVal } = useContext(CartContextVal);
 
@@ -18,13 +19,14 @@ const ProductCard = () => {
             const productData = await getProduct(id);
             setData(productData);
         };
-
         getProductById();
     }, [id]);
 
     const buttonClicked = () => {
-        addToCart(id);
-        setInputVal(inputVal + 1);
+        if (variant) {
+            addToCart(id, variant.variant, variant.quantity);
+            setInputVal(inputVal + 1);
+        }
     };
 
     return (
@@ -48,7 +50,11 @@ const ProductCard = () => {
                     </div>
 
                     <p>${data?.price}</p>
-                    <StockLevel data={data} />
+                    <StockLevel
+                        data={data}
+                        variant={variant}
+                        setVariant={setVariant}
+                    />
                     <button
                         onClick={buttonClicked}
                         className={styles.cart__btn}
