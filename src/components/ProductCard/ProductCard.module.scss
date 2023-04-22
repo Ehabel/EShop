@@ -3,22 +3,50 @@
     border: 1px solid white;
     height: 300px;
     width: fit-content;
-    margin: 10px;
+    margin: 10vh 10px 10px 10px;
     color: black;
+    display: flex;
 
     &__text {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
+        align-items: center;
+        margin: 30vh 10px 10px 10px;
+
+        &__fav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     &__img {
-        width: 250px;
-        height: 250px;
+        width: 60vw;
+        height: 75vh;
     }
 
     &__fav {
-        position: absolute;
-        bottom: 35px;
-        right: 10px;
+        padding-left: 10px;
+    }
+
+    &__fav:hover {
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .product {
+        display: flex;
+        flex-direction: column;
+
+        &__text {
+            margin: 0;
+        }
+
+        &__img {
+            width: 50vw;
+            height: 45vh;
+        }
     }
 }

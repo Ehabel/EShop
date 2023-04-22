@@ -9,6 +9,18 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 
+const shoe = [
+    {
+        id: 7,
+        title: "Black Puma",
+        price: 250,
+        description: "",
+        image: "../../images/blackPuma.jpg",
+        variants: ["XS", "S", "M", "L", "XL", "XXL"],
+        quantities: { XS: 13, S: 10, M: 12, L: 8, XL: 2, XXL: 6 },
+        favourite: false,
+    },
+];
 const shoes = [
     {
         id: 7,
@@ -132,6 +144,22 @@ export const getAllProducts = async () => {
         return product;
     });
     return data;
+};
+
+export const getAllCartProducts = async () => {
+    console.log("Getting all cart products from products.js");
+    const querySnapshot = await getDocs(collection(db, "cart"));
+    const data = querySnapshot.docs.map((doc) => {
+        const id = doc.id;
+        const data = doc.data();
+        const product = { id, ...data };
+        return product;
+    });
+    return data;
+};
+
+export const addToCart = async (productObj) => {
+    await addDoc(collection(db, "cart"), `/products/${productObj}`);
 };
 
 // export const addProducts = async () => {

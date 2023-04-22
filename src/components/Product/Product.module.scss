@@ -12,6 +12,7 @@
         justify-content: space-between;
         padding: 5px;
         font-size: large;
+        color: #253b56;
     }
 
     &__img {
@@ -25,6 +26,10 @@
         bottom: 55px;
         right: 10px;
         color: white;
+    }
+
+    &__fav:hover {
+        cursor: pointer;
     }
 }
 

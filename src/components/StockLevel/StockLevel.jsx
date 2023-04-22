@@ -23,16 +23,20 @@ const StockLevel = ({ data }) => {
                         </button>
                     );
                 })}
-                {data?.quantities?.[size] > 0 ? (
-                    <p className={styles.stock__container__item}>
-                        {data.quantities[size]} In Stock
-                    </p>
-                ) : (
-                    <p className={styles.stock__container__item}>
-                        Out of Stock
-                    </p>
-                )}
             </div>
+            {data?.quantities?.[size] > 0 ? (
+                <p className={styles.stock__container__item__num}>
+                    {data.quantities[size]} In Stock
+                </p>
+            ) : data.quantities[size] === 0 ? (
+                <p className={styles.stock__container__item__num}>
+                    Out of Stock
+                </p>
+            ) : (
+                <p className={styles.stock__container__item__num}>
+                    Select a size
+                </p>
+            )}
         </div>
     );
 };

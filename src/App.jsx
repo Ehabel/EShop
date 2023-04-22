@@ -7,19 +7,25 @@ import Home from "./components/Home/Home";
 import { useState, useEffect } from "react";
 import ProductCard from "./components/ProductCard/ProductCard";
 import CarouselPage from "./containers/CarouselPage/CarouselPage";
-import { getAllProducts } from "./services/products";
+import { getAllCartProducts, getAllProducts } from "./services/products";
 import PaginatedItems from "./containers/Pagination/Paginate";
 
 function App() {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
     const getProducts = async () => {
-        console.log("Fetching products");
         setProducts(await getAllProducts());
+    };
+
+    const getCart = async () => {
+        setCart(await getAllCartProducts());
     };
 
     useEffect(() => {
         getProducts();
+        // getCart();
     }, []);
+
     return (
         <div className="App">
             <BrowserRouter basename="/eshop">
@@ -34,7 +40,6 @@ function App() {
                             element={
                                 <>
                                     <CarouselPage />
-                                    {/* <Home products={products} /> */}
                                     <PaginatedItems
                                         itemsPerPage={7}
                                         products={products}
