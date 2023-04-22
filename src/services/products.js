@@ -184,10 +184,10 @@ export const getProduct = async (id) => {
 };
 
 export const getProductFromCart = async (id) => {
+    // return db.getInstance().document(id);
     console.log("Getting single item from cart in products.js");
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
-
     if (docSnap.exists()) {
         return { id, ...docSnap.data() };
     } else {
