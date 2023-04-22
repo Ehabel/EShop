@@ -1,5 +1,5 @@
 import React from "react";
-import { getProduct } from "../../services/products";
+import { addToCart, getProduct } from "../../services/products";
 import styles from "./ProductCard.module.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -17,6 +17,10 @@ const ProductCard = () => {
         };
         getProductById();
     }, [id]);
+
+    const buttonClicked = () => {
+        addToCart(id);
+    };
 
     return (
         data && (
@@ -40,6 +44,12 @@ const ProductCard = () => {
 
                     <p>${data?.price}</p>
                     <StockLevel data={data} />
+                    <button
+                        onClick={buttonClicked}
+                        className={styles.cart__btn}
+                    >
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         )

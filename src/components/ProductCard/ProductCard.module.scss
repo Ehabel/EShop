@@ -35,6 +35,19 @@
     }
 }
 
+.cart__btn {
+    width: 200px;
+    margin-top: 20px;
+    color: white;
+    background-color: #ff00bd;
+}
+
+.cart__btn:hover {
+    color: #ff00bd;
+    background-color: aliceblue;
+    border: 1px solid #ff00bd;
+}
+
 @media only screen and (max-width: 950px) {
     .product {
         display: flex;

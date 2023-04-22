@@ -9,6 +9,7 @@ import ProductCard from "./components/ProductCard/ProductCard";
 import CarouselPage from "./containers/CarouselPage/CarouselPage";
 import { getAllCartProducts, getAllProducts } from "./services/products";
 import PaginatedItems from "./containers/Pagination/Paginate";
+import Cart from "./components/Cart/Cart";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -22,8 +23,8 @@ function App() {
     };
 
     useEffect(() => {
-        getProducts();
-        // getCart();
+        // getProducts();
+        getCart();
     }, []);
 
     return (
@@ -52,6 +53,10 @@ function App() {
                             element={<Home products={products} />}
                         />
                         <Route path="/products/:id" element={<ProductCard />} />
+                        <Route
+                            path="/cart"
+                            element={<Cart products={cart} />}
+                        />
                     </Routes>
                 </div>
             </BrowserRouter>
