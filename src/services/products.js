@@ -135,7 +135,6 @@ const shoes = [
 ];
 
 export const getAllProducts = async () => {
-    console.log("Getting all products from products.js");
     const querySnapshot = await getDocs(collection(db, "products"));
     const data = querySnapshot.docs.map((doc) => {
         const id = doc.id;
@@ -147,7 +146,6 @@ export const getAllProducts = async () => {
 };
 
 export const getAllCartProducts = async () => {
-    console.log("Getting all cart products from products.js");
     const querySnapshot = await getDocs(collection(db, "cart"));
     const data = querySnapshot.docs.map((doc) => {
         const id = doc.id;
@@ -172,7 +170,6 @@ export const addToCart = async (productObj) => {
 // };
 
 export const getProduct = async (id) => {
-    console.log("Getting single item from products.js");
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
 
@@ -183,20 +180,29 @@ export const getProduct = async (id) => {
     }
 };
 
-export const getProductFromCart = async (id) => {
+export const getProductFromCart = async (id, cartId) => {
     // return db.getInstance().document(id);
-    console.log("Getting single item from cart in products.js");
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-        return { id, ...docSnap.data() };
+    const docRefCart = doc(db, "cart", cartId);
+    const docSnapCart = await getDoc(docRef);
+    if (docSnap.exists() && docSnapCart.exists()) {
+        return { id, idCart: docRefCart.id, ...docSnap.data() };
     } else {
         throw new Error("Doc not found");
     }
+};
+
+export const getProductFromCartTwo = async (productRef) => {
+    const productSnapshot = await getDoc(productRef);
+    return productSnapshot.data();
 };
 
 export const updateProduct = async (id, param) => {
-    console.log("Updating product products.js");
     const productRef = doc(db, "products", id);
     await updateDoc(productRef, param);
+};
+
+export const removeFromCart = async (id) => {
+    await deleteDoc(doc(db, "cart", id));
 };

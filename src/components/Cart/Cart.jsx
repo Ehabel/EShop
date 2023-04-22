@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Product from "../Product/Product";
 import { getProductFromCart } from "../../services/products";
+import CartCard from "../CartCard/CartCard";
+import { CartContextVal } from "../../context/CartContext/CartContext";
+import { useContext } from "react";
 
-const Cart = ({ products }) => {
+const Cart = ({ products, removed, setRemoved }) => {
     const [inCart, setInCart] = useState([]);
+    const { inputVal, setInputVal } = useContext(CartContextVal);
+
     const getItemsInCart = async () => {
         const unresolvedPromises = products.map(async (product) => {
-            // console.log(await getProductFromCart(product.itemId));
-            return await getProductFromCart(product.itemId);
+            return await getProductFromCart(product.itemId, product.id);
         });
-        console.log(unresolvedPromises);
         const results = await Promise.all(unresolvedPromises);
         return results;
     };
@@ -20,26 +22,23 @@ const Cart = ({ products }) => {
 
     useEffect(() => {
         getAllCartProducts();
-        // const getProductById = async () => {
-        //     const productData = await getProductFromCart(products[0].id);
-        //     setInCart(productData);
-        // };
-        // getProductById();
-    }, []);
+    }, [inputVal]);
 
-    console.log("In Cart", inCart);
     return (
         <>
             <h2>Cart</h2>
             <div>
                 {inCart.map((product) => (
-                    <Product
-                        key={product.id}
+                    <CartCard
+                        key={`cart${product.id}`}
                         name={product.title}
                         price={product.price}
                         imgLink={product.image}
                         id={product.id}
+                        idCart={product.idCart}
                         favourite={product.favourite}
+                        removed={removed}
+                        setRemoved={setRemoved}
                     />
                 ))}
             </div>

@@ -9,11 +9,17 @@ import ProductCard from "./components/ProductCard/ProductCard";
 import CarouselPage from "./containers/CarouselPage/CarouselPage";
 import { getAllCartProducts, getAllProducts } from "./services/products";
 import PaginatedItems from "./containers/Pagination/Paginate";
+import { useContext } from "react";
 import Cart from "./components/Cart/Cart";
+import { CartContextVal } from "./context/CartContext/CartContext";
 
 function App() {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
+    const [added, setAdded] = useState(0);
+    const [removed, setRemoved] = useState(0);
+    const { inputVal, setInputVal } = useContext(CartContextVal);
+
     const getProducts = async () => {
         setProducts(await getAllProducts());
     };
@@ -24,8 +30,11 @@ function App() {
 
     useEffect(() => {
         getProducts();
-        getCart();
     }, []);
+
+    useEffect(() => {
+        getCart();
+    }, [inputVal, removed]);
 
     return (
         <div className="App">
@@ -55,7 +64,13 @@ function App() {
                         <Route path="/products/:id" element={<ProductCard />} />
                         <Route
                             path="/cart"
-                            element={<Cart products={cart} />}
+                            element={
+                                <Cart
+                                    removed={removed}
+                                    setRemoved={setRemoved}
+                                    products={cart}
+                                />
+                            }
                         />
                     </Routes>
                 </div>

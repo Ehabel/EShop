@@ -5,21 +5,26 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import StockLevel from "../StockLevel/StockLevel";
 import Favourite from "../Favourite/Favourite";
+import { useContext } from "react";
+import { CartContextVal } from "../../context/CartContext/CartContext";
 
 const ProductCard = () => {
     const [data, setData] = useState(null);
     const { id } = useParams();
+    const { inputVal, setInputVal } = useContext(CartContextVal);
 
     useEffect(() => {
         const getProductById = async () => {
             const productData = await getProduct(id);
             setData(productData);
         };
+
         getProductById();
     }, [id]);
 
     const buttonClicked = () => {
         addToCart(id);
+        setInputVal(inputVal + 1);
     };
 
     return (
