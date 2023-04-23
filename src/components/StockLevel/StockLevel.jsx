@@ -17,7 +17,7 @@ const StockLevel = ({ data, variant, setVariant }) => {
     };
 
     const increaseQuant = () => {
-        setQuant(quant + 1);
+        if (quant < data.quantities[size]) setQuant(quant + 1);
     };
 
     const decreaseQuant = () => {
@@ -25,6 +25,8 @@ const StockLevel = ({ data, variant, setVariant }) => {
             setQuant(quant - 1);
         }
     };
+    // console.log(size);
+    // console.log(variant);
 
     return (
         <div className={styles.stock}>

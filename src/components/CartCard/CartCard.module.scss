@@ -14,7 +14,6 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 5px;
-        font-size: large;
         color: #253b56;
 
         &__cart {
@@ -54,4 +53,9 @@
     &__fav:hover {
         cursor: pointer;
     }
+}
+
+.trash {
+    height: 20px;
+    width: 20px;
 }

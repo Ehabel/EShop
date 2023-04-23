@@ -34,20 +34,19 @@ const Cart = ({ products, removed, setRemoved }) => {
     };
 
     useEffect(() => {
-        getAllCartProducts();
-    }, [inputVal]);
+        getAllCartProducts().catch((e) => e);
+    }, [inputVal, products]);
 
     useEffect(() => {
         setPriceCart(setTotalPrice());
     }, [inCart]);
-
     return (
         <>
             <h2>Cart</h2>
             <div>
                 {inCart.map((product) => (
                     <CartCard
-                        key={`cart${product.id}`}
+                        key={`cart${product.id}${product.variant}`}
                         name={product.title}
                         price={product.price}
                         imgLink={product.image}
