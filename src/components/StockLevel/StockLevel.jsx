@@ -30,9 +30,6 @@ const StockLevel = ({ data, variant, setVariant }) => {
             });
         }
     };
-    console.log(size);
-    console.log(variant);
-    console.log(quant);
 
     return (
         <div className={styles.stock}>
