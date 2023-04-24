@@ -7,26 +7,32 @@ const StockLevel = ({ data, variant, setVariant }) => {
     const [quant, setQuant] = useState(1);
 
     const handleSize = (e) => {
-        if (e.target.value) {
-            setSize(e.target.value);
+        console.log(quant);
+        setSize(e.target.value);
+    };
+
+    const increaseQuant = (e) => {
+        if (quant < data.quantities[size]) {
+            setQuant(quant + 1);
             setVariant({
-                variant: e.target.value,
-                quantity: quant,
+                variant: size,
+                quantity: quant + 1,
             });
         }
     };
 
-    const increaseQuant = () => {
-        if (quant < data.quantities[size]) setQuant(quant + 1);
-    };
-
-    const decreaseQuant = () => {
+    const decreaseQuant = (e) => {
         if (quant > 1) {
             setQuant(quant - 1);
+            setVariant({
+                variant: size,
+                quantity: quant - 1,
+            });
         }
     };
-    // console.log(size);
-    // console.log(variant);
+    console.log(size);
+    console.log(variant);
+    console.log(quant);
 
     return (
         <div className={styles.stock}>
