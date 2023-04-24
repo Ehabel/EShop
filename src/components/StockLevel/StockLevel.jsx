@@ -7,11 +7,10 @@ const StockLevel = ({ data, variant, setVariant }) => {
     const [quant, setQuant] = useState(1);
 
     const handleSize = (e) => {
-        console.log(quant);
         setSize(e.target.value);
     };
 
-    const increaseQuant = (e) => {
+    const increaseQuant = () => {
         if (quant < data.quantities[size]) {
             setQuant(quant + 1);
             setVariant({
@@ -21,7 +20,7 @@ const StockLevel = ({ data, variant, setVariant }) => {
         }
     };
 
-    const decreaseQuant = (e) => {
+    const decreaseQuant = () => {
         if (quant > 1) {
             setQuant(quant - 1);
             setVariant({

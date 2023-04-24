@@ -34,7 +34,7 @@ function App() {
 
     useEffect(() => {
         getCart();
-    }, [inputVal, removed]);
+    }, [products, inputVal, removed]);
 
     return (
         <div className="App">

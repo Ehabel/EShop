@@ -57,6 +57,7 @@ const Cart = ({ products, removed, setRemoved }) => {
                         quantity={product.quantity}
                         removed={removed}
                         setRemoved={setRemoved}
+                        product={product}
                     />
                 ))}
                 <div className={styles.text}>Total Price: ${priceCart}</div>

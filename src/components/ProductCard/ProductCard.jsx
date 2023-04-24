@@ -1,5 +1,5 @@
 import React from "react";
-import { addToCart, getProduct } from "../../services/products";
+import { addToCart, getProduct, updateProduct } from "../../services/products";
 import styles from "./ProductCard.module.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -14,6 +14,18 @@ const ProductCard = () => {
     const { id } = useParams();
     const { inputVal, setInputVal } = useContext(CartContextVal);
 
+    const updateProductQuant = async () => {
+        const newObj = {
+            quantities: {
+                ...data.quantities,
+                [variant.variant]:
+                    parseInt(data.quantities[variant.variant]) -
+                    parseInt(variant.quantity),
+            },
+        };
+        await updateProduct(data.id, newObj);
+    };
+
     useEffect(() => {
         const getProductById = async () => {
             const productData = await getProduct(id);
@@ -26,6 +38,7 @@ const ProductCard = () => {
         if (variant) {
             addToCart(id, variant.variant, variant.quantity);
             setInputVal(inputVal + 1);
+            updateProductQuant();
         }
     };
 
