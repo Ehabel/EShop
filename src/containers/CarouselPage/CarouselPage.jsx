@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./CarouselPage.module.scss";
 import {
     CarouselProvider,
@@ -11,13 +11,15 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 
 const CarouselPage = () => {
     return (
-        <div>
+        <div className={styles.carousel__wrapper}>
             <CarouselProvider
                 naturalSlideWidth={100}
                 naturalSlideHeight={20}
-                totalSlides={3}
+                totalSlides={4}
                 infinite={true}
                 className={styles.carousel__container}
+                isPlaying={true}
+                interval={5000}
             >
                 <div className={styles.go__container}>
                     <div className={styles.go__left}>
@@ -46,6 +48,13 @@ const CarouselPage = () => {
                         <img
                             className={styles.img}
                             src="../../images/drMartensBanner.jpg"
+                            alt=""
+                        />
+                    </Slide>
+                    <Slide index={3}>
+                        <img
+                            className={styles.img}
+                            src="../../images/puma4k.webp"
                             alt=""
                         />
                     </Slide>

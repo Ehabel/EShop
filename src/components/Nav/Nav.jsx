@@ -14,6 +14,9 @@ const Nav = () => {
             <NavLink className={styles.item} to="/cart">
                 Cart
             </NavLink>
+            <NavLink className={styles.item} to="/favourites">
+                Favourites
+            </NavLink>
         </nav>
     );
 };

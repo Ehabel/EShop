@@ -17,8 +17,8 @@
     right: 0;
     display: flex;
     justify-content: space-between;
-    background-color: white;
-    color: black;
+    background-color: #161a1d;
+    color: white;
     width: 100vw;
     z-index: 1;
 }

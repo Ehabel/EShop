@@ -1,5 +1,4 @@
 import "./App.css";
-import ProductsList from "./containers/ProductsList/ProductsList";
 import { BrowserRouter } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import { Route, Routes } from "react-router-dom";
@@ -12,11 +11,11 @@ import PaginatedItems from "./containers/Pagination/Paginate";
 import { useContext } from "react";
 import Cart from "./components/Cart/Cart";
 import { CartContextVal } from "./context/CartContext/CartContext";
+import FilteredPage from "./containers/FilteredPage/FilteredPage";
 
 function App() {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
-    const [added, setAdded] = useState(0);
     const [removed, setRemoved] = useState(0);
     const { inputVal, setInputVal } = useContext(CartContextVal);
 
@@ -30,7 +29,7 @@ function App() {
 
     useEffect(() => {
         getProducts();
-    }, []);
+    }, [inputVal]);
 
     useEffect(() => {
         getCart();
@@ -49,7 +48,7 @@ function App() {
                             path="/"
                             element={
                                 <>
-                                    <CarouselPage />
+                                    <CarouselPage products={products} />
                                     <PaginatedItems
                                         itemsPerPage={7}
                                         products={products}
@@ -71,6 +70,10 @@ function App() {
                                     products={cart}
                                 />
                             }
+                        />
+                        <Route
+                            path="/favourites"
+                            element={<FilteredPage products={products} />}
                         />
                     </Routes>
                 </div>

@@ -6,6 +6,8 @@ import {
     deleteDoc,
     getDoc,
     updateDoc,
+    where,
+    query,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -203,6 +205,18 @@ export const getProductFromCart = async (id, cartId) => {
 export const getProductFromCartTwo = async (productRef) => {
     const productSnapshot = await getDoc(productRef);
     return productSnapshot.data();
+};
+
+export const getProductFavourites = async () => {
+    const q = query(collection(db, "products"), where("favourite", "==", true));
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => {
+        const id = doc.id;
+        const data = doc.data();
+        const product = { id, ...data };
+        return product;
+    });
+    return data;
 };
 
 export const updateProduct = async (id, param) => {

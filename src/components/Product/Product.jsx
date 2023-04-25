@@ -1,12 +1,6 @@
 import React from "react";
 import styles from "./Product.module.scss";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as unfilled } from "@fortawesome/free-regular-svg-icons";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { useState } from "react";
-import { updateProduct } from "../../services/products";
 import Favourite from "../Favourite/Favourite";
 
 const Product = ({ name, price, imgLink, id, favourite }) => {

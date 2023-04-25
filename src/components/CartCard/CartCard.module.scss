@@ -59,3 +59,22 @@
     height: 20px;
     width: 20px;
 }
+
+@media only screen and (max-width: 950px) {
+    .product {
+        display: flex;
+        width: 95vw;
+        margin: 10px 0 15px 0;
+
+        &__text {
+            &__cart {
+                width: 45vw;
+            }
+        }
+
+        &__img {
+            width: 45vw;
+            height: 200px;
+        }
+    }
+}
