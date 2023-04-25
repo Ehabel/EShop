@@ -1,7 +1,7 @@
 # docker build -t eshop .
 # docker run -dp 3000:3000  eshop
 
-FROM node:18
+FROM node:18-alpine
 WORKDIR /app
 RUN mkdir -p /opt/node_modules
 COPY ./package.json /app
