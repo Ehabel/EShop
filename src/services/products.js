@@ -224,6 +224,11 @@ export const updateProduct = async (id, param) => {
     await updateDoc(productRef, param);
 };
 
+export const updateCart = async (id, param) => {
+    const cartRef = doc(db, "cart", id);
+    await updateDoc(cartRef, param);
+};
+
 export const removeFromCart = async (id) => {
     await deleteDoc(doc(db, "cart", id));
 };

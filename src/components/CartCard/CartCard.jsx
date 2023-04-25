@@ -3,6 +3,7 @@ import styles from "./CartCard.module.scss";
 import {
     getProduct,
     removeFromCart,
+    updateCart,
     updateProduct,
 } from "../../services/products";
 import { CartContextVal } from "../../context/CartContext/CartContext";
@@ -43,9 +44,15 @@ const CartCard = ({
 
     const removeItem = () => {
         removeFromCart(idCart);
+        updateProductQuant();
         setRemoved(removed + 1);
         setInputVal(inputVal + 1);
-        updateProductQuant();
+    };
+
+    const updateCartProd = async () => {
+        await updateCart(idCart, {
+            quantity: newQuant,
+        });
     };
 
     const onClickInc = () => {
@@ -75,8 +82,17 @@ const CartCard = ({
             };
             await updateProduct(id, newObj);
         }
-        setInputVal(inputVal + 1);
         setNewQuantCpy(newQuant);
+        updateCartProd();
+        setInputVal(() => inputVal + 1);
+        setRemoved(() => removed + 1);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await saveChanges();
+        setInputVal(() => inputVal + 1);
+        setRemoved(() => removed + 1);
     };
 
     return (
@@ -101,19 +117,21 @@ const CartCard = ({
                         </span>
                     </p>
                 </div>
-                <p>Total: ${quantity * price}</p>
+                <p>Total: ${newQuantCpy * price}</p>
                 <div className={styles.product__text__cart}>
                     <button onClick={onClickDec}>-</button>
                     <p>{newQuant}</p>
                     <button onClick={onClickInc}>+</button>
-                    <button onClick={saveChanges}>Save</button>
-                    <button onClick={removeItem}>
-                        <FontAwesomeIcon
-                            icon="fa-solid fa-trash"
-                            style={{ color: "#000000" }}
-                            className={styles.trash}
-                        />
-                    </button>
+                    <form onSubmit={handleSubmit}>
+                        <button onClick={saveChanges}>Save</button>
+                        <button onClick={removeItem}>
+                            <FontAwesomeIcon
+                                icon="fa-solid fa-trash"
+                                style={{ color: "#000000" }}
+                                className={styles.trash}
+                            />
+                        </button>{" "}
+                    </form>
                 </div>
             </div>
         </div>

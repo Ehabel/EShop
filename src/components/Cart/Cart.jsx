@@ -9,17 +9,12 @@ const Cart = ({ products, removed, setRemoved }) => {
     const [inCart, setInCart] = useState([]);
     const [priceCart, setPriceCart] = useState(0);
     const { inputVal, setInputVal } = useContext(CartContextVal);
-
     const getItemsInCart = async () => {
         const unresolvedPromises = products.map(async (product) => {
             return await getProductFromCart(product.itemId, product.id);
         });
         const results = await Promise.all(unresolvedPromises);
         return results;
-    };
-
-    const getAllCartProducts = async () => {
-        setInCart(await getItemsInCart());
     };
 
     const setTotalPrice = () => {
@@ -34,12 +29,17 @@ const Cart = ({ products, removed, setRemoved }) => {
     };
 
     useEffect(() => {
+        const getAllCartProducts = async () => {
+            const cartStuff = await getItemsInCart();
+            setInCart(cartStuff);
+        };
         getAllCartProducts().catch((e) => e);
     }, [inputVal, products]);
 
     useEffect(() => {
-        setPriceCart(setTotalPrice());
-    }, [inCart]);
+        const newPrice = setTotalPrice();
+        setPriceCart(newPrice);
+    }, [inCart, inputVal]);
     return (
         <>
             <h2>Cart</h2>

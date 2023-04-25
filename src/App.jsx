@@ -19,21 +19,19 @@ function App() {
     const [removed, setRemoved] = useState(0);
     const { inputVal, setInputVal } = useContext(CartContextVal);
 
-    const getProducts = async () => {
-        setProducts(await getAllProducts());
-    };
-
-    const getCart = async () => {
-        setCart(await getAllCartProducts());
-    };
-
     useEffect(() => {
+        const getProducts = async () => {
+            setProducts(await getAllProducts());
+        };
         getProducts();
     }, [inputVal]);
 
     useEffect(() => {
+        const getCart = async () => {
+            setCart(await getAllCartProducts());
+        };
         getCart();
-    }, [products, inputVal, removed]);
+    }, [inputVal]);
 
     return (
         <div className="App">

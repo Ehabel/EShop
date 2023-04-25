@@ -6,9 +6,9 @@ import CartContext from "./context/CartContext/CartContext";
 
 // ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <CartContext>
-            <App />
-        </CartContext>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <CartContext>
+        <App />
+    </CartContext>
+    /* </React.StrictMode> */
 );
