@@ -16,7 +16,6 @@ import FilteredPage from "./containers/FilteredPage/FilteredPage";
 function App() {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
-    const [removed, setRemoved] = useState(0);
     const { inputVal, setInputVal } = useContext(CartContextVal);
 
     useEffect(() => {
@@ -61,13 +60,7 @@ function App() {
                         <Route path="/products/:id" element={<ProductCard />} />
                         <Route
                             path="/cart"
-                            element={
-                                <Cart
-                                    removed={removed}
-                                    setRemoved={setRemoved}
-                                    products={cart}
-                                />
-                            }
+                            element={<Cart products={cart} />}
                         />
                         <Route
                             path="/favourites"

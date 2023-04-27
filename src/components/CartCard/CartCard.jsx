@@ -21,8 +21,6 @@ const CartCard = ({
     variant,
     quantity,
     idCart,
-    removed,
-    setRemoved,
     product,
 }) => {
     const [newQuant, setNewQuant] = useState(parseInt(quantity));
@@ -45,7 +43,6 @@ const CartCard = ({
     const removeItem = () => {
         removeFromCart(idCart);
         updateProductQuant();
-        setRemoved(removed + 1);
         setInputVal(inputVal + 1);
     };
 
@@ -84,15 +81,13 @@ const CartCard = ({
         }
         setNewQuantCpy(newQuant);
         updateCartProd();
-        setInputVal(() => inputVal + 1);
-        setRemoved(() => removed + 1);
+        setInputVal(inputVal + 1);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         await saveChanges();
-        setInputVal(() => inputVal + 1);
-        setRemoved(() => removed + 1);
+        setInputVal(inputVal + 1);
     };
 
     return (

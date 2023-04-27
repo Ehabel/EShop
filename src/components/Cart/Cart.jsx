@@ -5,7 +5,7 @@ import { CartContextVal } from "../../context/CartContext/CartContext";
 import { useContext } from "react";
 import styles from "./Cart.module.scss";
 
-const Cart = ({ products, removed, setRemoved }) => {
+const Cart = ({ products }) => {
     const [inCart, setInCart] = useState([]);
     const [priceCart, setPriceCart] = useState(0);
     const { inputVal, setInputVal } = useContext(CartContextVal);
@@ -55,8 +55,6 @@ const Cart = ({ products, removed, setRemoved }) => {
                         favourite={product.favourite}
                         variant={product.variant}
                         quantity={product.quantity}
-                        removed={removed}
-                        setRemoved={setRemoved}
                         product={product}
                     />
                 ))}
