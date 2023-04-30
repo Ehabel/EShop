@@ -5,10 +5,9 @@ import { useContext } from "react";
 import { CartContextVal } from "../../context/CartContext/CartContext";
 import { getProductFavourites } from "../../services/products";
 
-const FilteredPage = ({ products }) => {
+const FilteredPage = () => {
     const [favouritesArr, setFavouritesArr] = useState([]);
-    const { inputVal, setInputVal } = useContext(CartContextVal);
-    const filtArr = products.filter((product) => product.favourite);
+    const { inputVal } = useContext(CartContextVal);
 
     const getFavs = async () => {
         setFavouritesArr(await getProductFavourites());
@@ -18,7 +17,6 @@ const FilteredPage = ({ products }) => {
         getFavs();
     }, [inputVal]);
 
-    console.log(favouritesArr);
     return (
         <div>
             <div>
