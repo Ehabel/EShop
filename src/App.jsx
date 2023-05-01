@@ -34,7 +34,7 @@ function App() {
 
     return (
         <div className="App">
-            <HashRouter basename="/EShop">
+            <BrowserRouter basename="/EShop">
                 <div className="navbar">
                     <h3 className="heading">EShop</h3>
                     <Nav />
@@ -68,7 +68,7 @@ function App() {
                         />
                     </Routes>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
         </div>
     );
 }
