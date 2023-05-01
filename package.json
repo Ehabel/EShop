@@ -1,7 +1,7 @@
 {
     "name": "eshop",
     "private": true,
-    "homepage": "http://ehabel.github.io/",
+    "homepage": "http://ehabel.github.io/EShop",
     "version": "0.0.0",
     "type": "module",
     "scripts": {
