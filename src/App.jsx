@@ -34,7 +34,7 @@ function App() {
 
     return (
         <div className="App">
-            <BrowserRouter basename="/eshop">
+            <BrowserRouter basename="/EShop">
                 <div className="navbar">
                     <h3 className="heading">EShop</h3>
                     <Nav />
